@@ -1,0 +1,19 @@
+# ============================================================================
+# Crea questo secondo helper in Home Assistant, stesso procedimento del primo:
+# Impostazioni → Dispositivi e servizi → Helper → Crea helper → Menu a scelta
+#
+# Nome: Pannello Lingua
+# Opzioni (esattamente come scritte):
+#   Italiano
+#   English
+#
+# In alternativa da YAML in configuration.yaml:
+# ============================================================================
+
+input_select:
+  pannello_lingua:
+    name: Pannello Lingua
+    options:
+      - "Italiano"
+      - "English"
+    icon: mdi:translate

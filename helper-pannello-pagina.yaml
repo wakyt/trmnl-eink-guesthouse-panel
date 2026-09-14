@@ -1,0 +1,25 @@
+# ============================================================================
+# Crea questo helper in Home Assistant:
+# Impostazioni → Dispositivi e servizi → Helper → Crea helper → Menu a scelta
+#
+# Nome: Pannello Pagina
+# Opzioni (una per riga, esattamente come scritte, maiuscole incluse):
+#   Home
+#   Check-in
+#   Check-out
+#
+# L'entity_id risultante sarà: input_select.pannello_pagina
+# (se te ne genera uno diverso, dimmelo e correggo l'entity_id nello YAML)
+#
+# In alternativa, se preferisci farlo da YAML invece che dall'interfaccia,
+# aggiungi questo in configuration.yaml:
+# ============================================================================
+
+input_select:
+  pannello_pagina:
+    name: Pannello Pagina
+    options:
+      - "Home"
+      - "Check-in"
+      - "Check-out"
+    icon: mdi:image-frame

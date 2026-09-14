@@ -1,0 +1,26 @@
+# ============================================================================
+# Da aggiungere in Home Assistant:
+# Impostazioni → Automazioni e scene → Crea automazione → Modifica in YAML
+# (oppure incollala nella lista "automation:" di configuration.yaml)
+# ============================================================================
+
+alias: "Pannello e-paper - Torna su Home dopo 16 ore"
+description: >
+  Se il pannello resta su Check-in o Check-out, torna automaticamente su
+  Home dopo 16 ore, in caso ci si dimentichi di cambiarlo manualmente.
+mode: restart
+trigger:
+  - platform: state
+    entity_id: input_select.pannello_e_paper
+    to: "Check-in"
+  - platform: state
+    entity_id: input_select.pannello_e_paper
+    to: "Check-out"
+action:
+  - delay:
+      hours: 16
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.pannello_e_paper
+    data:
+      option: "Home"
