@@ -5,7 +5,7 @@ vento, raccolta differenziata, Wi-Fi, e pagine dedicate di benvenuto/commiato
 per gli ospiti — bilingue (italiano/inglese), a batteria, pilotabile da
 Home Assistant.
 
-![Pannello acceso](images/screenshots/pannello-home.jpg)
+![Pannello acceso](https://github.com/wakyt/trmnl-eink-guesthouse-panel/blob/images/FB_IMG_1789398621900.jpg)
 
 ## Caratteristiche
 
