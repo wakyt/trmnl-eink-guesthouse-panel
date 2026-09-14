@@ -1,0 +1,131 @@
+type: custom:mushroom-template-badge
+icon: mdi:home
+icon_color: green
+label: ""
+tap_action:
+  action: fire-dom-event
+  browser_mod:
+    service: browser_mod.popup
+    data:
+      title: Pannello Guest House
+      style: >
+        --popup-background-color: var(--secondary-background-color);
+        --dialog-backdrop-filter: blur(2em) brightness(0.75);
+      content:
+        type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Home
+                icon: mdi:home
+                show_name: true
+                show_icon: true
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.pannello_e_paper
+                    option: "Home"
+                styles:
+                  card:
+                    - padding: 12px
+
+              - type: custom:button-card
+                name: Check-in
+                icon: mdi:home-import-outline
+                show_name: true
+                show_icon: true
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.pannello_e_paper
+                    option: "Check-in"
+                styles:
+                  card:
+                    - padding: 12px
+
+              - type: custom:button-card
+                name: Check-out
+                icon: mdi:home-export-outline
+                show_name: true
+                show_icon: true
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.pannello_e_paper
+                    option: "Check-out"
+                styles:
+                  card:
+                    - padding: 12px
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: input_select.pannello_lingua
+                name: Italiano
+                icon: mdi:translate
+                show_name: true
+                show_icon: true
+                show_state: false
+                state:
+                  - value: "Italiano"
+                    styles:
+                      card:
+                        - background-color: rgba(0, 180, 0, 0.25)
+                        - border: 2px solid rgb(0, 150, 0)
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.pannello_lingua
+                    option: "Italiano"
+                styles:
+                  card:
+                    - padding: 12px
+
+              - type: custom:button-card
+                entity: input_select.pannello_lingua
+                name: English
+                icon: mdi:translate
+                show_name: true
+                show_icon: true
+                show_state: false
+                state:
+                  - value: "English"
+                    styles:
+                      card:
+                        - background-color: rgba(0, 180, 0, 0.25)
+                        - border: 2px solid rgb(0, 150, 0)
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.pannello_lingua
+                    option: "English"
+                styles:
+                  card:
+                    - padding: 12px
+
+card_mod:
+  style: |
+    ha-card {
+      position: relative;
+    }
+    ha-card::after {
+      content: "{{ 'I' if states('input_select.pannello_lingua') == 'Italiano' else 'E' }}";
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background: green;
+      color: white;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      font-size: 10px;
+      font-weight: bold;
+      line-height: 15px;
+      text-align: center;
+    }

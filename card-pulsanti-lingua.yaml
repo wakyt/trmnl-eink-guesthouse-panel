@@ -1,0 +1,31 @@
+type: horizontal-stack
+cards:
+  - type: custom:button-card
+    name: Italiano
+    icon: mdi:translate
+    show_name: true
+    show_icon: true
+    tap_action:
+      action: call-service
+      service: input_select.select_option
+      service_data:
+        entity_id: input_select.pannello_lingua
+        option: "Italiano"
+    styles:
+      card:
+        - padding: 12px
+
+  - type: custom:button-card
+    name: English
+    icon: mdi:translate
+    show_name: true
+    show_icon: true
+    tap_action:
+      action: call-service
+      service: input_select.select_option
+      service_data:
+        entity_id: input_select.pannello_lingua
+        option: "English"
+    styles:
+      card:
+        - padding: 12px

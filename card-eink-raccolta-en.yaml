@@ -1,0 +1,201 @@
+type: entities
+card_mod:
+  style: |
+    ha-card {
+      max-width: 260px;
+      margin: 0 auto;
+      padding-top: 0 !important;
+    }
+    .card-header {
+      padding: 0px 0px 0px 0px !important;
+    }
+    .card-content {
+      padding-top: 0 !important;
+    }
+show_header_toggle: 'off'
+entities:
+  - type: custom:hui-element
+    card_type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: picture-elements
+            image: /local/rifiuti/trasparente.png
+            card_mod:
+              style: |
+                ha-card {
+                  overflow: visible !important;
+                  margin-top: -10px;
+                  margin-bottom: 0px;
+                }
+                #root {
+                  overflow: visible !important;
+                }
+            elements:
+              - type: custom:button-card
+                name: Waste Sorting
+                show_icon: false
+                style:
+                  top: 0%
+                  left: 50%
+                  transform: translate(-50%, 0%)
+                  width: 100%
+                styles:
+                  card:
+                    - background-color: transparent
+                    - box-shadow: none
+                    - border: none
+                  name:
+                    - font-family: Roboto, sans-serif
+                    - font-size: 14px
+                    - font-weight: bold
+                    - color: var(--primary-text-color)
+                    - white-space: nowrap
+              - type: image
+                entity: sensor.raccoltadifferenziata
+                style:
+                  top: 12%
+                  left: 0%
+                  transform: scale(0.9) translate(0%, 0%)
+                  transform-origin: top left
+                state_image:
+                  Nulla: /local/rifiuti_eink/Nulla.png
+                  Indifferenziato: /local/rifiuti_eink/Indifferenziato.png
+                  Plastica e metalli: /local/rifiuti_eink/Plastica.png
+                  Vetro: /local/rifiuti_eink/Vetro.png
+                  Carta e cartone: /local/rifiuti_eink/Carta.png
+                  Organico: /local/rifiuti_eink/Organico.png
+                  🥛 Organico e Vetro: /local/rifiuti_eink/Organicoevetro.png
+          - type: vertical-stack
+            card_mod:
+              style: |
+                ha-card {
+                  margin-top: -5px;
+                }
+            cards:
+              - type: custom:button-card
+                layout: icon_name_state2nd
+                entity: sensor.giornosettimana
+                name: Today is
+                show_icon: true
+                show_state: true
+                icon: mdi:calendar-arrow-right
+                state_display: |-
+                  [[[
+                    const giorni = {
+                      "Lunedì": "Monday", "Martedì": "Tuesday", "Mercoledì": "Wednesday",
+                      "Giovedì": "Thursday", "Venerdì": "Friday", "Sabato": "Saturday",
+                      "Domenica": "Sunday"
+                    };
+                    return giorni[entity.state] || entity.state;
+                  ]]]
+                styles:
+                  grid:
+                    - grid-template-columns: 28px auto
+                  icon:
+                    - padding: 0px 0px
+                    - height: 28px
+                    - width: 28px
+                  card:
+                    - --ha-card-background: rgba(0, 0, 0, 0.0)
+                    - --ha-card-box-shadow: none
+                    - --ha-card-border-width: 0px
+                    - height: 38px
+                    - width: 190px
+                  state:
+                    - padding: 0px 10px
+                    - justify-self: start
+                    - font-family: Roboto, sans-serif
+                    - font-size: 13px
+                    - font-weight: bold
+                  name:
+                    - padding: 0px 10px
+                    - justify-self: start
+                    - font-size: 15px
+                    - color: var(--primary-text-color)
+              - type: custom:button-card
+                layout: icon_name_state2nd
+                entity: sensor.raccoltadifferenziata
+                name: >-
+                  [[[ return "Collection from: " +
+                  (states["input_datetime.raccolta_differenziata_notifiche_start_time"].state.split(":")[0]
+                  + ":" +
+                  states["input_datetime.raccolta_differenziata_notifiche_start_time"].state.split(":")[1]);
+                  ]]]
+                show_icon: true
+                show_state: true
+                icon: mdi:recycle
+                state_display: |-
+                  [[[
+                    const categorie = {
+                      "Organico": "Organic", "Plastica e metalli": "Plastic & metal",
+                      "Vetro": "Glass", "Carta e cartone": "Paper & cardboard",
+                      "Indifferenziato": "General waste", "Nulla": "No collection",
+                      "🥛 Organico e Vetro": "Organic & glass"
+                    };
+                    return categorie[entity.state] || entity.state;
+                  ]]]
+                styles:
+                  grid:
+                    - grid-template-columns: 28px auto
+                  icon:
+                    - padding: 0px 0px
+                    - height: 28px
+                    - width: 28px
+                  card:
+                    - --ha-card-background: rgba(0, 0, 0, 0.0)
+                    - --ha-card-box-shadow: none
+                    - --ha-card-border-width: 0px
+                    - height: 38px
+                    - width: 190px
+                  state:
+                    - padding: 0px 10px
+                    - justify-self: start
+                    - font-family: Roboto, sans-serif
+                    - font-size: 13px
+                    - font-weight: bold
+                  name:
+                    - padding: 0px 10px
+                    - justify-self: start
+                    - font-size: 15px
+                    - color: var(--primary-text-color)
+              - type: custom:button-card
+                layout: icon_name_state2nd
+                entity: sensor.giornoritiro
+                name: Collection day
+                show_icon: true
+                show_state: true
+                icon: mdi:trash-can-outline
+                state_display: |-
+                  [[[
+                    const giorni = {
+                      "Lunedì": "Monday", "Martedì": "Tuesday", "Mercoledì": "Wednesday",
+                      "Giovedì": "Thursday", "Venerdì": "Friday", "Sabato": "Saturday",
+                      "Domenica": "Sunday"
+                    };
+                    return giorni[entity.state] || entity.state;
+                  ]]]
+                styles:
+                  grid:
+                    - grid-template-columns: 28px auto
+                  icon:
+                    - padding: 0px 0px
+                    - height: 28px
+                    - width: 28px
+                  card:
+                    - --ha-card-background: rgba(0, 0, 0, 0.0)
+                    - --ha-card-box-shadow: none
+                    - --ha-card-border-width: 0px
+                    - height: 38px
+                    - width: 190px
+                  state:
+                    - padding: 0px 10px
+                    - justify-self: start
+                    - font-family: Roboto, sans-serif
+                    - font-size: 13px
+                    - font-weight: bold
+                  name:
+                    - padding: 0px 10px
+                    - justify-self: start
+                    - font-size: 15px
+                    - color: var(--primary-text-color)
