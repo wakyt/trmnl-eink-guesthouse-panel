@@ -1,0 +1,11 @@
+# Non committare mai le credenziali reali
+secrets.yaml
+esphome/secrets.yaml
+
+# File di build ESPHome
+.esphome/
+*.bin
+
+# File di sistema
+.DS_Store
+Thumbs.db
